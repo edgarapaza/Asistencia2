@@ -1,0 +1,11 @@
+D:\projects\Asistencia2\bin\Debug\Asistencia2.exe.config
+D:\projects\Asistencia2\bin\Debug\Asistencia2.exe
+D:\projects\Asistencia2\bin\Debug\Asistencia2.pdb
+D:\projects\Asistencia2\obj\Debug\Asistencia2.csproj.AssemblyReference.cache
+D:\projects\Asistencia2\obj\Debug\Asistencia2.csproj.SuggestedBindingRedirects.cache
+D:\projects\Asistencia2\obj\Debug\Asistencia2.Form1.resources
+D:\projects\Asistencia2\obj\Debug\Asistencia2.Properties.Resources.resources
+D:\projects\Asistencia2\obj\Debug\Asistencia2.csproj.GenerateResource.cache
+D:\projects\Asistencia2\obj\Debug\Asistencia2.csproj.CoreCompileInputs.cache
+D:\projects\Asistencia2\obj\Debug\Asistencia2.exe
+D:\projects\Asistencia2\obj\Debug\Asistencia2.pdb
