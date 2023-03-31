@@ -24,6 +24,10 @@ namespace Asistencia2
             Boolean res =  validate.Verificar(txtUsuario, txtPassword1, lblnivel, lblstatus, lblidpersonal);
             if(res)
             {
+                CAsistencia asistencia = new CAsistencia();
+                asistencia.AsistenciaIngreso(1, lblidpersonal.Text, 1);
+
+
                 Datos datos = new Datos();
 
                 datos.lblNivel.Text = lblnivel.Text;
@@ -62,6 +66,24 @@ namespace Asistencia2
             {
                 e.Handled = true;//elimina el sonido
                 button1_Click(sender, e);//llama al evento click del boton
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CValidate validate = new CValidate();
+            Boolean res = validate.Verificar(txtUsuario, txtPassword1, lblnivel, lblstatus, lblidpersonal);
+
+            if (res)
+            {
+                CAsistencia asistencia = new CAsistencia();
+                asistencia.AsistenciaSalida(1, lblidpersonal.Text, 1);
+    
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Incorrecto");
             }
         }
     }
