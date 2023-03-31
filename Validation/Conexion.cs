@@ -11,10 +11,10 @@ namespace Asistencia2.Validation
         MySqlConnection conex = new MySqlConnection();
 
         static string servidor = "localhost";
-        static string db = "asistencia";
-        static string usuario = "usuario";
-        static string passwd = "archivo123$";
-        static string puerto = "3306";
+        static string db       = "asistencias";
+        static string usuario  = "root";
+        static string passwd   = "Archivo123$";
+        static string puerto   = "3306";
 
         string cadenaConexion = "Database=" + db + "; Data Source=" + servidor + "; User Id=" + usuario + "; Password=" + passwd + "; Port=" + puerto + ";";
         public MySqlConnection Conectar()
