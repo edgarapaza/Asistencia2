@@ -97,15 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\CAsistencia.cs" />
     <Compile Include="Validation\Conexion.cs" />
-<<<<<<< HEAD
-    <Compile Include="Validation\SegundoPlano.cs" />
-    <Compile Include="Validation\Validate.cs" />
-=======
     <Compile Include="Validation\CValidate.cs" />
-    <EmbeddedResource Include="Datos.resx">
-      <DependentUpon>Datos.cs</DependentUpon>
-    </EmbeddedResource>
->>>>>>> 73835917e7a4c3a0171eea5d96b7890775c8c45a
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

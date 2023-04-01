@@ -12,17 +12,17 @@ namespace Asistencia2.Validation
     {
         Conexion conn = new Conexion();
 
-        public bool Verificar(TextBox user, TextBox passwd, Label nivel,Label status,Label idpersonal)
+        public bool Verificar(TextBox user, TextBox passwd, Label nivel, Label status, Label idpersonal)
         {
             string mensaje = null;
             Boolean estado = false;
 
             try
             {
-                string consulta = "SELECT nivel, status, idpersonal FROM login WHERE user_name = '"+user.Text+"' AND pass_name = '"+passwd.Text+"';";
+                string consulta = "SELECT nivel, status, idpersonal FROM login WHERE user_name = '" + user.Text + "' AND pass_name = '" + passwd.Text + "';";
                 MySqlCommand cmd = new MySqlCommand(consulta, conn.Conectar());
                 MySqlDataReader reader = cmd.ExecuteReader();
-               
+
                 while (reader.Read())
                 {
                     status.Text = reader.GetString(1);
@@ -30,12 +30,12 @@ namespace Asistencia2.Validation
                     if (Int32.Parse(status.Text) == 1)
                     {
                         mensaje = "Asistencia registrada";
-                    
+
                         nivel.Text = reader.GetString(0);
                         idpersonal.Text = reader.GetString(2);
 
                         estado = true;
-                        
+
                     }
                     else
                     {

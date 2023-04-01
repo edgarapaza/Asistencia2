@@ -21,7 +21,8 @@ namespace Asistencia2
         private void button1_Click(object sender, EventArgs e)
         {
             CValidate validate = new CValidate();
-            Boolean res =  validate.Verificar(txtUsuario, txtPassword1, lblnivel, lblstatus, lblidpersonal);
+
+            Boolean res = validate.Verificar(txtUsuario, txtPassword1,lblnivel, lblstatus, lblidpersonal);
             if(res)
             {
                 CAsistencia asistencia = new CAsistencia();
@@ -61,12 +62,12 @@ namespace Asistencia2
 
         private void txtPassword1_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            if (e.KeyChar == (char)(Keys.Enter))
+            if (e.KeyChar == (char)13)
             {
                 e.Handled = true;//elimina el sonido
                 button1_Click(sender, e);//llama al evento click del boton
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,6 +85,19 @@ namespace Asistencia2
             else
             {
                 MessageBox.Show("Incorrecto");
+            }
+        }
+
+        private void txtUsuario_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtUsuario_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                txtPassword1.Focus();
             }
         }
     }

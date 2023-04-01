@@ -29,7 +29,7 @@ namespace Asistencia2.Validation
 
             try
             {
-                string consulta = "INSERT INTO asistencia VALUES (null,'"+periodo+"','"+ idpersonal + "','"+dia+"','"+ hora_in + "','00:00:00','" + asis + "','"+ llamada + "','"+ descuento + "')";
+                string consulta = "INSERT INTO asistencia VALUES (null,'" + periodo + "','" + idpersonal + "','" + dia + "','" + hora_in + "','00:00:00','" + asis + "','" + llamada + "','" + descuento + "')";
                 MySqlCommand cmd = new MySqlCommand(consulta, conn.Conectar());
                 cmd.ExecuteNonQuery();
                 conn.CerrarConexion();
@@ -39,13 +39,13 @@ namespace Asistencia2.Validation
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         public void AsistenciaSalida(int periodo, string idpersonal, int llamada)
         {
-            string asis = "p";
-            double descuento = 0;
+            //string asis = "p";
+            //double descuento = 0;
 
 
             string dia = DateTime.Now.ToString("yyyy-MM-dd");
@@ -59,7 +59,7 @@ namespace Asistencia2.Validation
 
             try
             {
-                string consulta = "UPDATE asistencia SET hora_out = '"+ hora_out + "' WHERE idasistencia = '2' AND dia = '"+ dia + "';";
+                string consulta = "UPDATE asistencia SET hora_out = '" + hora_out + "' WHERE idasistencia = '2' AND dia = '" + dia + "';";
                 MySqlCommand cmd = new MySqlCommand(consulta, conn.Conectar());
                 cmd.ExecuteNonQuery();
                 conn.CerrarConexion();
