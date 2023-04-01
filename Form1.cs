@@ -20,8 +20,24 @@ namespace Asistencia2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Validate validate = new Validate();
-            validate.Verificar(txtUsuario, txtPassword);
+            if(txtUsuario.Text != "")
+            {
+                if(txtPassword.Text != "")
+                {
+                    Validate validate = new Validate();
+                    validate.Verificar(txtUsuario, txtPassword);
+                }
+                else
+                {
+                    MessageBox.Show("Debe llenar su contraseña");
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Usuario Vacio");
+            }
+            
         }
     }
 }
