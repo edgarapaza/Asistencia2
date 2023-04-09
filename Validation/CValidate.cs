@@ -1,9 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Asistencia2.Validation
@@ -12,51 +9,91 @@ namespace Asistencia2.Validation
     {
         Conexion conn = new Conexion();
 
-        public bool Verificar(TextBox user, TextBox passwd, Label nivel, Label status, Label idpersonal)
+
+        public int Login(TextBox user, TextBox passwd, Label nivel, Label status, Label idpersonal)
         {
-            string mensaje = null;
-            Boolean estado = false;
+
+            CAsistencia asistencia = new CAsistencia();
+
+            int estado = 0;
+            int nivel_id = 0;
+            string id_personal = null;
+            
+
 
             try
             {
-                string consulta = "SELECT nivel, status, idpersonal FROM login WHERE user_name = '" + user.Text + "' AND pass_name = '" + passwd.Text + "';";
+                string consulta = "SELECT idlogin,idpersonal,nivel,activo FROM gonsad.asistencia_login WHERE loginname = '" + user.Text + "' AND passwd = '" + passwd.Text + "'";
                 MySqlCommand cmd = new MySqlCommand(consulta, conn.Conectar());
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    status.Text = reader.GetString(1);
+                    nivel_id = reader.GetInt32(2);
+                    estado = reader.GetInt32(3);
+                    id_personal = reader.GetString(1);
 
-                    if (Int32.Parse(status.Text) == 1)
+                    nivel.Text = reader.GetString(2);
+                    status.Text = reader.GetString(3);
+                    idpersonal.Text = reader.GetString(1);
+
+
+                    if (estado == 1)
                     {
-                        mensaje = "Asistencia registrada";
+                        switch (nivel_id)
+                        {
+                            case 1:
+                                Console.WriteLine("administrador");
+                                //AsistenciaAdministrador();
+                                break;
+                            case 2:
+                                Console.WriteLine("Jefe");
+                                //AsistenciaJefe();
+                                break;
+                            case 3:
+                                Console.WriteLine("Personal");
+                                int total = asistencia.VerificarAsistencia(id_personal);
+                                
 
-                        nivel.Text = reader.GetString(0);
-                        idpersonal.Text = reader.GetString(2);
+                                if (total > 0)
+                                {
+                                    MessageBox.Show("Reingresando a la Aplicación");
+                                    asistencia.RegistraBitacora(id_personal);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Primer registro del dia");
+                                    asistencia.RegistraBitacora(id_personal);
+                                }
 
-                        estado = true;
+                                break;
+                            default:
+                                Console.WriteLine("Opcion No reconocida");
+                                break;
+                        }
 
+                        estado = 1;
                     }
                     else
                     {
-                        mensaje = "No esta activado";
-                        estado = false;
-
+                        MessageBox.Show("EL USUARIO NO TIENE PERMISO PARA INGRESAR A LA APLICACION");
+                        estado = 0;
                     }
-                }
 
+                    
+                }
+                reader.Close();
                 conn.CerrarConexion();
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error: " + e.ToString());
+                MessageBox.Show("Error Login: " + e.ToString());
             }
-
-            MessageBox.Show(mensaje);
 
             return estado;
         }
 
+        
 
     }
 }
